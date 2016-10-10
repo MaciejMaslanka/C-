@@ -1,0 +1,61 @@
+using System;
+
+
+namespace ConsoleApplication5
+{
+    class Liczba
+    {
+        public long l;
+        public Liczba(long licz)
+        {
+            l = licz;
+        }
+        public bool TestPierwsza()
+        {
+            double r = Math.Sqrt(l);
+            long i = 2;
+
+            if (l == 1)
+                return false;
+            else
+            {
+                while (i <= r)
+                    if ((l % i++) == 0) return false;
+                return true;
+            }
+        }
+    }
+    
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n;
+            long p;
+            n = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i<n;i++)
+            {
+                p = int.Parse(Console.ReadLine());
+
+                Liczba z;
+
+                z = new Liczba(p);
+
+                if (z.TestPierwsza())
+                {
+                    Console.WriteLine("TAK");
+                }
+                else
+                {
+                    Console.WriteLine("NIE");
+                }
+
+            }
+
+            Console.ReadLine();
+
+        }
+    }
+}

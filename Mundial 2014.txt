@@ -1,0 +1,20 @@
+using System;
+
+namespace Mundial
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string ee = "E", ce = "C";
+            
+            int e = int.Parse(ee, System.Globalization.NumberStyles.HexNumber);
+            int c = int.Parse(ce, System.Globalization.NumberStyles.HexNumber);
+            int zero = e - e;
+            int dwa = e-c;
+            Console.WriteLine("Mundial " + dwa + zero + e);
+            Console.ReadLine();
+
+        }
+    }
+}

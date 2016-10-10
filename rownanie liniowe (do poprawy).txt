@@ -1,0 +1,60 @@
+using System;
+using System.Globalization;
+
+namespace Polowa
+{
+   class Rownanie
+   {
+       public double a;
+       public double b;
+       public double c;
+       public NumberFormatInfo p;
+       public Rownanie (string x, string y, string z)
+       {
+           p = new NumberFormatInfo();
+
+           p.NumberDecimalSeparator = ".";
+
+           a = Convert.ToDouble(x,p);
+           b = Convert.ToDouble(y,p);
+           c = Convert.ToDouble(z,p);
+       }
+       public void rozwiazanie()
+       {
+           
+           if ( a!= 0.00)
+           {
+               
+               Console.WriteLine(Convert.ToDouble(Math.Round(((c - b) / a),2),p));
+           }
+           else if (a==0.00 && b-c !=0.00)
+           {
+               Console.WriteLine("BR");
+           }
+           else if (a==b-c)
+           {
+               Console.WriteLine("NWR");
+           }
+       }
+   }
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string x;
+
+            x = Console.ReadLine();
+            string[] dane = x.Split(' ');
+
+
+            Rownanie Q;
+
+            Q = new Rownanie(dane[0], dane[1], dane[2]);
+
+            Q.rozwiazanie();
+
+            Console.ReadLine();
+        }
+    }
+}

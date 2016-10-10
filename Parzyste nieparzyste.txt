@@ -1,0 +1,45 @@
+using System;
+
+
+namespace parzystenieparzyste
+{
+   
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int u;
+
+            u = int.Parse(Console.ReadLine());
+            string q;
+
+            for (int i = 0; i < u;i++ )
+            {
+                q = Console.ReadLine();
+
+                string[] dane = q.Split(' ');
+
+                for (int y = 1; y<dane.Length;y++)
+                {
+                    if (y%2==0)
+                        Console.Write(dane[y] + " ");
+                }
+                for (int z = 1; z<dane.Length; z++)
+                {
+                    if (z%2!=0)
+                        Console.Write(dane[z] + " ");
+                }
+
+                Console.WriteLine();            
+            }
+
+
+
+
+
+
+                Console.ReadLine();
+        }
+    }
+}

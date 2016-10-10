@@ -1,0 +1,71 @@
+using System;
+
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int t,a=0,b=0,c=0; //komentarze
+            string nazwa,x;
+            string[] nadwaga = new string[100];
+            string[] prawidlowa = new string[100];
+            string[] niedowaga = new string[100];
+            double bmi, masa, wielkosc;
+
+
+            t = int.Parse(Console.ReadLine());
+
+            for (int i=0; i<t; i++)
+            {
+                x = Console.ReadLine();
+
+                string[] dane = x.Split(' ');
+                nazwa = Convert.ToString(dane[0]);
+                masa = int.Parse(dane[1]);
+                wielkosc = Convert.ToInt32(dane[2]);
+
+
+                bmi = masa / ((wielkosc / 100) * (wielkosc / 100));
+
+                if(bmi<18.5)
+                {
+                    niedowaga[a] = nazwa;
+                    a++;
+                }
+                else if (bmi<25)
+                {
+                    prawidlowa[b] = nazwa;
+                    b++;
+                }
+                else
+                {
+                    nadwaga[c] = nazwa;
+                    c++;
+                }
+            }
+
+            Console.WriteLine("niedowaga");
+            for (int j=0;j<a;j++)
+            {
+                Console.WriteLine(niedowaga[j]);
+            }
+            Console.WriteLine("");
+            Console.WriteLine("wartosc prawidlowa");
+            for (int j=0;j<b;j++)
+            {
+                Console.WriteLine(prawidlowa[j]);
+            }
+            Console.WriteLine("");
+            Console.WriteLine("nadwaga");
+            for (int j=0;j<c;j++)
+            {
+                Console.WriteLine(nadwaga[j]);
+            }
+
+
+            Console.ReadLine();
+        }
+    }
+}

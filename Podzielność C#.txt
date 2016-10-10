@@ -1,0 +1,43 @@
+using System;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n, a, x, y, j, w;
+            string z;
+
+            n = int.Parse(Console.ReadLine());
+
+
+            for (int i = 0;i<n;i++)
+            {
+                z = Convert.ToString(Console.ReadLine());
+                
+                string[] liczby = z.Split(' ');
+                a = Convert.ToInt32(liczby[0]);
+                x = Convert.ToInt32(liczby[1]);
+                y = Convert.ToInt32(liczby[2]);
+           
+            if(x > y)
+                w = y;
+            else
+                w = x;
+
+                for (j=w; j<a;j++)
+                {
+                    if (j%x==0 && !(j%y==0))
+                    {
+                        Console.Write(j + " ");
+                    }
+                }
+
+                Console.WriteLine();
+            }
+            Console.ReadLine();
+          
+        }
+    }
+}

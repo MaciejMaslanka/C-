@@ -1,0 +1,113 @@
+/////////////////////////Generycznosc metod///////////////////////////////
+
+
+ static void wypisanie<Typ>(Typ wyraz) // Jest to generyczna funkcja wypisuj¹ca wyraz niezale¿nie jakiego typu jest
+        {
+            Console.WriteLine(wyraz);
+        }
+        
+
+
+        static void Main()
+        {
+            Console.WriteLine("Wypisanie kilku formatów w jednej funkcji :");
+            string wyraz = "To jest string";
+            wypisanie(wyraz); // Wypisanie stringa
+            int liczba = 15;
+            wypisanie(liczba);// Wypisanie inta
+            float liczba2 = 2.6732F;
+            wypisanie(liczba2); // Wypisanie float
+            wypisanie(liczba2 + liczba); // Funkcja daje rade nawet z dodaniem inta i float do siebie.
+            Console.ReadKey();
+        }
+
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////Generycznoœc interfejsu i klasy//////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+    public class Prostokat
+    {
+        public int bok1;
+        public int bok2;
+        public Prostokat() { bok1 = 0; bok2 = 0; }
+        public Prostokat(int bokx, int boky) { bok1 = bokx; bok2 = boky; }
+        public int LiczPole() { return (bok1 * bok2); }
+        public int LiczObwod() { return 2*(bok1 + bok2); }
+    }
+
+    public interface IST<Typ> // Interfejs stosu
+    {
+        void pop(int x, int y);
+        void push();
+        int top();
+        void make_empty();
+        bool isempty();
+
+    }
+
+    public abstract class stos<Typ> : IST<Typ> // Stos dziedziczy po interfejsie
+    {
+        public Typ[] P = new Typ[10000]; // Maksymalna wielkoœæ stosu typu generycznego(Tutaj nie zdefiniowano jaki to jest dok³adnie typ)
+        public int n; // Liczba obiektów na stosie
+        public stos() { n = 0; } // Konstruktor daje wartoœæ n = 0 poniewa¿ stos na pocz¹tku zawsze jest pusty
+        public abstract void pop(int x, int y);// metoda abstrakcyjna zwiêkszaj¹ca stos o 1. Jest abstrakcyjna poniewa¿ bêdziemy ja nadpisywaæ przy zdefiniowaniu typu      
+        public void push() { n--; } // metoda zmniejszaj¹ca wartoœc stosu o 1
+        public int top() { return n; } //metoda zwracaj¹ca iloœæ obiektów na stosie
+        public void make_empty() { n = 0; } // Funkcja czyszcz¹ca stos
+        public bool isempty() { return n == 0; } // Je¿eli stos jest pusty zwraca 1
+
+    }
+    public class StosInt : stos<int> // Tutaj definiuje typ generyczny klasy StosInt
+    {
+        public override void pop(int x, int y) // Nadpisanie metody pop po sprecyzowaniu typu
+        {
+            n++;
+            P[n] = x + y;
+        }
+       
+    }
+
+    public class StosProstokat : stos<Prostokat> // Tutaj za typ wzi¹³em inn¹ klasê. Czyli nie tylko musimy ograniczaæ siê do generycznych typów prostych ale mo¿emy konstruowaæ w³asne typ.
+    {
+        public override void pop(int x, int y) // Nadpisanie metody pop po sprecyzowaniu typu
+        {
+            n++;
+            Prostokat tmp = new Prostokat(x,y); // Mo¿emy stworzyæ nowy obiekt bez ¿adnych problemów
+            P[n] = new Prostokat(tmp.LiczObwod(), tmp.LiczPole()); // Tutaj mo¿na zobaczyæ ¿e mamy te¿ dostêp do wszystkich metod publicznych klasy Prostokat
+        }
+
+        public void wypisanie()
+        {
+            Console.WriteLine("BokX = "+P[n].bok1+" BokY = "+ P[n].bok2); // Wypisanie najwy¿szego prostok¹ta ze stosu
+        }
+    }
+
+    class Program
+    {
+        
+        static void Main()
+        {
+            Console.WriteLine("**********Stos Int****************");
+            StosInt Test1 = new StosInt(); // Sprawdzenie czy stos z intami dzia³a
+            Test1.pop(3, 7); //Dodanie na stos liczby 3 + 7
+            Console.WriteLine("Pierwszy element stosu : " + Test1.P[Test1.top()]);
+            Test1.pop(4, 2); //Dodanie na stos liczby 4 + 2
+            Console.WriteLine("Drugi element stosu : " + Test1.P[Test1.top()]);
+            Test1.pop(1, 3); //Dodanie na stos liczby 1 + 3
+            Console.WriteLine("Trzeci element stosu : " + Test1.P[Test1.top()]);
+            Console.ReadKey();
+            StosProstokat Test2 = new StosProstokat();
+            Console.WriteLine("**********Stos prostokatow**********");
+            Test2.pop(3, 7); //Dodanie na stos Prostok¹ta o bokuX = 2*(3+7) i bokuY = 3*7
+            Console.Write("Pierwszy element stosu : ");
+            Test2.wypisanie();
+            Test2.pop(4, 2); //Dodanie na stos Prostok¹ta o bokuX = 2*(4+2) i bokuY = 4*2
+            Console.Write("Drugi element stosu : ");
+            Test2.wypisanie();
+            Test2.pop(1, 3); //Dodanie na stos Prostok¹ta o bokuX = 2*(1+3) i bokuY = 1*3
+            Console.Write("Trzeci element stosu : ");
+            Test2.wypisanie();
+            Console.ReadKey();
+        }
+    }
+////////////////////////////////////////////////////////////////////////////////////

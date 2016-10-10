@@ -1,0 +1,31 @@
+using System;
+
+
+namespace Polowa
+{
+   
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int zestaw,l;
+            string z;
+
+            zestaw = int.Parse(Console.ReadLine());
+
+            for (int j = 0; j < zestaw;j++ )
+            {
+                z = Console.ReadLine();
+                l = z.Length;
+
+                for (int i=0;i<l/2;i++)
+                {
+                    Console.Write(z[i]);
+                }
+                Console.WriteLine();
+            }
+                Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,60 @@
+using System;
+
+
+namespace ConsoleApplication5
+{
+  
+
+    class Punkt
+    {
+        public int x;
+        public int y;
+        public Punkt(int iks, int igrek)
+        {
+            x = iks;
+            y = igrek;
+        }
+        public bool wspolliniowosc(Punkt a, Punkt b)
+        {
+            if ((x * a.y + a.x * b.y + b.x * y - b.x * a.y - a.x * y - x * b.y) == 0)
+                return true;
+            return false;
+        }
+    }
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int ile;
+            string x;
+
+            ile = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < ile;i++ )
+            {
+                x = Console.ReadLine();
+                string[] dane = x.Split(' '); //separatorem jest tabulacja, trzeba zmieniæ wklejaj¹c kod
+
+                Punkt A, B, C;
+
+                A = new Punkt(int.Parse(dane[0]), int.Parse(dane[1]));
+                B = new Punkt(int.Parse(dane[2]), int.Parse(dane[3]));
+                C = new Punkt(int.Parse(dane[4]), int.Parse(dane[5]));
+
+                if(A.wspolliniowosc(B,C))
+                {
+                    Console.WriteLine("TAK");
+                }
+                else
+                {
+                    Console.WriteLine("NIE");
+                }
+
+            }
+
+                Console.ReadLine();
+            
+        }
+    }
+}

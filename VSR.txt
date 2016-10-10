@@ -1,0 +1,43 @@
+using System;
+
+
+namespace VSR
+{
+    class Predkosc
+    {
+        public double b;
+        public Predkosc(string x)
+        {
+            b = Convert.ToDouble(x);
+        }
+        public double srednia(Predkosc x)
+        {
+            return (2 / ((1 / x.b) + (1 / b)));
+        }
+    }
+    
+    
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int t;
+            t = Convert.ToInt32(Console.ReadLine());
+            string w;
+            for (int i= 0;i<t;i++)
+            {
+                w = Console.ReadLine();
+                string[] dane = w.Split(' ');
+
+                Predkosc Q1, Q2;
+
+                Q1 = new Predkosc(dane[0]);
+                Q2 = new Predkosc(dane[1]);
+
+                Console.WriteLine(Q1.srednia(Q2));
+            }
+            Console.ReadLine();
+        }
+    }
+}

@@ -1,0 +1,39 @@
+using System;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int t, a,b,c,j;
+            string z;
+            t = int.Parse(Console.ReadLine());
+
+            for (int i=0;i<t;i++)
+            {
+                z = Convert.ToString(Console.ReadLine());
+                string[] liczby = z.Split(' ');
+
+                a = int.Parse(liczby[0]);
+                b = Convert.ToInt32(liczby[1]);
+
+                if(a>b)
+                {
+                    c = a - 1;
+                }
+                else
+                {
+                    c = b - 1;
+                }
+                do
+                {
+                    c++;
+                    j = ((c%a)+(c%b));
+                } while (j != 0);
+                Console.WriteLine(c);
+            }
+            Console.ReadLine();
+        }
+    }
+}

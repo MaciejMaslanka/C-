@@ -1,0 +1,23 @@
+#include<iostream>
+#include<cmath>
+
+using namespace std;
+int main(){
+
+int i,n,a,b,j,c;
+cin>>n;
+for (i=0;i<n;i++)
+{
+	cin>>a>>b;
+
+	if (a>b)c=a-1;
+	else c=b-1;
+	do
+	{
+		c++;
+		j=(c%a)+(c%b);
+	}
+	while(j);
+cout<<c<<endl;
+}
+}
